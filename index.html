@@ -167,6 +167,33 @@ background:#111827;
 color:white;
 font-size:14px;
 }
+.contact-form{
+display:flex;
+flex-direction:column;
+gap:15px;
+margin-bottom:30px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea{
+padding:12px;
+border-radius:12px;
+border:none;
+outline:none;
+font-size:14px;
+}
+
+.contact-form textarea{
+min-height:120px;
+resize:none;
+}
+
+.contact-info{
+margin-top:20px;
+font-size:14px;
+line-height:1.8;
+}
 
 </style>
 </head>
@@ -290,21 +317,86 @@ Currently pursuing BCA in Cyber Security.
 
 <!-- CONTACT -->
 <section id="contact">
-<h2 class="section-title">Contact</h2>
+<h2 class="section-title">Contact Me</h2>
 
 <div class="contact-box">
-<p>Kristu Jayanti University</p>
-<p>Bengaluru, Karnataka, India</p>
-<p>Languages: English, Malayalam</p>
-<p>Email: 25bcyc25@kristujayanti.com</p>
-<p>Phone: +91 7909227173</p>
+
+<form id="contact-form" class="contact-form">
+
+<input type="text" id="name" placeholder="Your Full Name" required>
+
+<input type="email" id="email" placeholder="Your Email Address" required>
+
+<input type="tel" name="phone" placeholder="Your Phone Number">
+
+<select name="subject" required>
+<option value="">Select Subject</option>
+<option value="project">Project Inquiry</option>
+<option value="collaboration">Collaboration</option>
+<option value="internship">Internship Opportunity</option>
+<option value="other">Other</option>
+</select>
+
+<textarea id="message" placeholder="Write your message here..." required></textarea>
+
+<button type="submit" class="btn">Send Message</button>
+
+</form>
+
+<div class="contact-info">
+<p><strong>📍 Location:</strong> Bengaluru, Karnataka, India</p>
+<p><strong>📧 Email:</strong> 25bcyc25@kristujayanti.com</p>
+<p><strong>📱 Phone:</strong> +91 7909227173</p>
+<p><strong>🌐 Languages:</strong> English, Malayalam</p>
 </div>
+
+</div>
+</section>
 
 </section>
 
 <footer>
 Designed & Developed by Edwin Tom Thomas · 2026
 </footer>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyAzHwq6DBGtSySR_paeUL1L5Oj3D64rvlI",
+    authDomain: "edwin-portfolio-436ea.firebaseapp.com",
+    projectId: "edwin-portfolio-436ea",
+    storageBucket: "edwin-portfolio-436ea.firebasestorage.app",
+    messagingSenderId: "710260631229",
+    appId: "1:710260631229:web:7af0250e598a44aecfb9d4"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const form = document.getElementById("contact-form");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    try {
+      await addDoc(collection(db, "messages"), {
+        name,
+        email,
+        message,
+        createdAt: new Date()
+      });
+
+      alert("Message sent successfully!");
+      form.reset();
+    } catch (error) {
+      alert("Error: " + error);
+    }
+  });
+</script>
 </body>
 </html>
