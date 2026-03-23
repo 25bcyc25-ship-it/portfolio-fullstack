@@ -11,11 +11,11 @@
 <style>
 
 :root{
---primary:#7c3aed;
---secondary:#a78bfa;
---dark:#111827;
---bg:#f3f4f6;
---text:#1f2937;
+--primary:#00f7ff;
+--secondary:#ff00ff;
+--dark:#0f172a;
+--bg:#020617;
+--text:#e2e8f0;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -28,7 +28,7 @@ color:var(--text);
 
 /* NAV */
 nav{
-background:rgba(255,255,255,0.8);
+background:rgba(2,6,23,0.8);
 backdrop-filter:blur(10px);
 padding:15px 30px;
 display:flex;
@@ -36,7 +36,7 @@ justify-content:space-between;
 position:fixed;
 width:100%;
 top:0;
-box-shadow:0 4px 20px rgba(0,0,0,0.05);
+box-shadow:0 0 20px rgba(0,247,255,0.2);
 z-index:100;
 }
 
@@ -56,7 +56,7 @@ color:var(--primary);
 .hero{
 padding:140px 20px 80px;
 text-align:center;
-background:linear-gradient(135deg,#ede9fe,#ddd6fe,#c4b5fd);
+background:linear-gradient(135deg,#020617,#0f172a,#1e293b);
 }
 
 .hero h1{
@@ -83,13 +83,17 @@ font-size:16px;
 .btn{
 display:inline-block;
 padding:12px 28px;
-background:var(--primary);
-color:white;
+background:linear-gradient(90deg,#00f7ff,#ff00ff);
+color:black;
 border-radius:30px;
 text-decoration:none;
 font-weight:600;
 transition:0.3s;
-box-shadow:0 6px 20px rgba(124,58,237,0.3);
+}
+
+.btn:hover{
+box-shadow:0 0 15px #00f7ff;
+transform:translateY(-3px);
 }
 
 .btn:hover{
@@ -107,25 +111,28 @@ text-align:center;
 font-size:28px;
 margin-bottom:30px;
 font-weight:600;
+color:#00f7ff;
 }
 
 /* ABOUT */
 .about-box{
-background:white;
-padding:30px;
+background:#020617;
 border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
+box-shadow:0 0 15px rgba(0,247,255,0.1);
+border:1px solid rgba(255,255,255,0.05);
+padding:30px;
 line-height:1.9;
 }
 
 /* SKILLS */
 .skill{
 display:inline-block;
-background:white;
+background:#020617;
 padding:10px 18px;
 margin:8px;
 border-radius:30px;
-box-shadow:0 5px 15px rgba(0,0,0,0.05);
+box-shadow:0 0 10px rgba(0,247,255,0.1);
+border:1px solid rgba(255,255,255,0.05);
 transition:0.3s;
 }
 
@@ -137,26 +144,40 @@ transform:scale(1.05);
 
 /* CERTIFICATIONS */
 .cert-card{
-background:white;
+background:#020617;
 padding:22px;
 margin-bottom:18px;
 border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
+box-shadow:0 0 15px rgba(0,247,255,0.1);
+border:1px solid rgba(255,255,255,0.05);
+color:#e2e8f0;
 transition:0.3s;
+}
+.cert-card h3{
+color:#00f7ff;
+}
+
+.cert-card p{
+color:#cbd5f5;
 }
 
 .cert-card:hover{
-transform:translateY(-5px);
+transform:translateY(-8px);
+box-shadow:0 0 20px #00f7ff;
+}
+.cert-card{
+backdrop-filter:blur(10px);
 }
 
 /* CONTACT */
 .contact-box{
-background:linear-gradient(135deg,#111827,#312e81);
-color:white;
-padding:40px;
+background: linear-gradient(135deg, #020617, #0f172a, #020617);
 border-radius:25px;
-text-align:center;
-line-height:1.9;
+padding:40px;
+box-shadow:0 0 20px rgba(0,247,255,0.15);
+border:1px solid rgba(255,255,255,0.05);
+max-width:400px;
+margin:auto;
 }
 
 /* FOOTER */
@@ -194,7 +215,119 @@ margin-top:20px;
 font-size:14px;
 line-height:1.8;
 }
+/* ===== MINIMAL CONTACT UI ===== */
 
+.contact-wrapper {
+  text-align: center;
+}
+
+.contact-card {
+  background: transparent;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: linear-gradient(45deg, #00f7ff, #ff00ff, #00f7ff);
+  z-index: -1;
+  animation: borderGlow 4s linear infinite;
+}
+
+@keyframes borderGlow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.contact-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-card input,
+.contact-card textarea{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.05);
+  color:#ffffff;
+  font-size:14px;
+  box-shadow: 0 0 10px rgba(0,247,255,0.3);
+  transition: all 0.3s ease;
+}
+
+.contact-card input::placeholder,
+.contact-card textarea::placeholder {
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 1px;
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus{
+  border-color:#00f7ff;
+  box-shadow: 
+  0 0 5px #00f7ff,
+  0 0 15px rgba(0, 247, 255, 0.6),
+  inset 0 0 5px rgba(0, 247, 255, 0.3);
+  outline:none;
+  transform: scale(0.90);
+}
+
+.contact-card textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+.contact-card button{
+  width: 100%;          /* 👈 ADD HERE */
+  padding: 16px;        /* 👈 ADD HERE */
+  font-size: 16px;      /* 👈 ADD HERE */
+  margin-top: 10px;     /* 👈 ADD HERE */
+
+  background:linear-gradient(90deg,#00f7ff,#ff00ff);
+  border:none;
+  color:black;
+  font-weight:bold;
+  border-radius:30px;
+  transition:0.3s;
+}
+
+.contact-card button:hover{
+  transform: scale(0.90);
+box-shadow: 0 0 20px #ff00ff;
+}
+.contact-card button:active {
+  transform: scale(0.95);
+}
+/* ===== PREMIUM CONTACT GLOW BORDER ===== */
+.contact-box {
+  position: relative;
+  overflow: visible;
+}
+
+.contact-box::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #00f7ff, #ff00ff, #00f7ff);
+  z-index: -1;
+  filter: blur(25px);
+opacity: 0.5;
+  opacity: 0.7;
+  animation: glowMove 6s linear infinite;
+}
+
+@keyframes glowMove {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 </style>
 </head>
 
@@ -321,26 +454,27 @@ Currently pursuing BCA in Cyber Security.
 
 <div class="contact-box">
 
-<form id="contact-form" class="contact-form">
+  <!-- NEW CODE HERE -->
+  <div class="contact-wrapper">
+    <div class="contact-card">
 
-<input type="text" id="name" placeholder="Your Full Name" required>
+      <form id="contact-form">
+        <input id="name" place""holder="Full Name" required>
+        <input id="email" type="email" placeholder="Email Address" required>
+        <textarea id="message" placeholder="Write your message..." required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
 
-<input type="email" id="email" placeholder="Your Email Address" required>
+    </div>
+  </div>
 
-<input type="tel" name="phone" placeholder="Your Phone Number">
+</div>
+</section>
+    </form>
 
-<select name="subject" required>
-<option value="">Select Subject</option>
-<option value="project">Project Inquiry</option>
-<option value="collaboration">Collaboration</option>
-<option value="internship">Internship Opportunity</option>
-<option value="other">Other</option>
-</select>
+  </div>
 
-<textarea id="message" placeholder="Write your message here..." required></textarea>
-
-<button type="submit" class="btn">Send Message</button>
-
+</div>
 </form>
 
 <div class="contact-info">
